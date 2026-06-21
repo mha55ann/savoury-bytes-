@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: #16140F;
+    color: #F6F1E4;
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid #C9A24B;
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: #C9A24B;
+    color: #16140F;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Perforated ticket edge — punches semi-circular notches out of the
+     top edge of a card, revealing whatever sits behind it. Apply to the
+     element whose background should appear "torn". The mask is two
+     layers: a repeating scalloped strip for the top 12px, and a solid
+     fill for everything below it (mask-repeat defaults to no-repeat per
+     layer, so without the solid layer the card body beyond 12px would
+     have no mask coverage and render fully transparent). */
+  .ticket-edge {
+    position: relative;
+    -webkit-mask-image:
+      radial-gradient(circle at 10px 0, transparent 6px, black 6.5px),
+      linear-gradient(black, black);
+    mask-image:
+      radial-gradient(circle at 10px 0, transparent 6px, black 6.5px),
+      linear-gradient(black, black);
+    -webkit-mask-size: 20px 12px, 100% 100%;
+    mask-size: 20px 12px, 100% 100%;
+    -webkit-mask-repeat: repeat-x, no-repeat;
+    mask-repeat: repeat-x, no-repeat;
+    -webkit-mask-position: top, top;
+    mask-position: top, top;
+  }
+
+  .grain-overlay {
+    position: relative;
+  }
+
+  .grain-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  .animate-delay-1 { animation-delay: 0.1s; }
+  .animate-delay-2 { animation-delay: 0.25s; }
+  .animate-delay-3 { animation-delay: 0.4s; }
+  .animate-delay-4 { animation-delay: 0.55s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
