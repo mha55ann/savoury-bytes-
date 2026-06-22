@@ -82,3 +82,4 @@ This project's installed `lucide-react` version dropped all trademarked
 brand glyphs (Facebook/Instagram/Twitter, etc.). The footer's social icons
 in `src/components/SocialIcons.jsx` are small custom SVGs standing in for
 those — swap them for your preferred icon set if you'd like.
+test
